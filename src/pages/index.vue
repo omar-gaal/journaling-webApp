@@ -3,7 +3,7 @@
 
 <script setup lang="ts">
 import { useEditorContent } from '~/composables/useEditorContent';
-const {data, pending, error} = await useFetch('http://localhost:35865/umbraco/delivery/api/v2/content/item/')
+const { data: umbracoData, pending, error, refresh } = await useFetch('http://localhost:35865/umbraco/delivery/api/v2/content/item');
 
 
 const isOpen = useSidebar();
@@ -18,10 +18,24 @@ const { editorContent, saveEntry } = useEditorContent();
     
     <PartialJournalWorkspace> 
       <!-- testing -->
-       <pre v-if="!pending">
-        {{ data }}
-       </pre>
-       <p v-if="error">Error: {{ error.message }}</p>
+       <h1>Umbraco Content</h1>
+
+       <div v-if="pending">
+        <p>loading content...</p>
+       </div>
+
+       <div v-else-if="error">
+        <p>Error loading content: {{ error.message }}</p>
+       </div>
+
+       <div v-else-if="umbracoData && umbracoData.properties">
+        <h2>{{  umbracoData.properties.title }}</h2>
+        <p>{{ umbracoData.properties.helloWorld }}</p>
+       </div>
+       
+        <div v-else>
+         <p>No content found.</p>
+          </div>
        <!-- testing -->
       <h1 class="title-frontpage">Welcome back</h1>
       <BaseEditor v-model="editorContent"/>
