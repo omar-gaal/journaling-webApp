@@ -1,0 +1,51 @@
+// # Layout stuff (grid, spacing, page structure)
+
+
+
+
+.mainHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 14px;
+    background-color: var(--bg-sidebar);
+
+}
+
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--bg-sidebar);
+    position: absolute;
+    z-index: 1000;
+    padding: 10px;
+    
+
+    .sidebar-child{
+        display: flex;
+        flex-direction: row;
+    }
+}  
+
+
+.journalWorkspace{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 5%;
+    
+}
+
+
+
+@media (min-width: 768px) { 
+  .title-frontpage {
+    // padding: 100px;
+    // margin: 0%;
+  }
+}

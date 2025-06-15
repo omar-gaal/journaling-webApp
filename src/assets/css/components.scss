@@ -1,0 +1,36 @@
+//# Reusable UI pieces like buttons, cards
+
+
+.editor {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+@media (min-width: 768px) { 
+  .editor {
+  padding-left: 100px;
+  padding-right: 100px;
+  }
+}
+
+
+
+
+// styling for save btn 
+.save-btn {
+  padding: 0.6rem 1.5rem;
+  background-color: var(--bg-sidebar);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+
+.save-btn:hover {
+  background-color: var(--bg-active);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+}
