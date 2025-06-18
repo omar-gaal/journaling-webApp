@@ -17,7 +17,7 @@ export type UmbracoStartItem = {
 export type UmbracoProperties = {
     title?: string;
     journalHeader?: string;
-    saveButton?: string;
+    saveButtonLabel?: string;
 };
 
 
