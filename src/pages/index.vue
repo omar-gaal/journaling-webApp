@@ -1,38 +1,36 @@
-
-
-
 <script setup lang="ts">
 import { useEditorContent } from '~/composables/useEditorContent';
 import { useUmbracoData } from '~/composables/useUmbracoData';
-const { umbracoData } = useUmbracoData();
+
+const { umbracoData} = useUmbracoData();
 
 const isOpen = useSidebar();
 const { editorContent, saveEntry } = useEditorContent();
 
-
 </script>
-    <template>
-      <div>
-        <Transition>
-        <PartialSidebar v-if="isOpen"/>
-        </Transition>
-        <PartialJournalWorkspace> 
+
+<template>
+  <div>
+    <Transition>
+      <PartialSidebar v-if="isOpen"/>
+    </Transition>
+    <PartialJournalWorkspace>
+      <div v-if="umbracoData && umbracoData.properties">
         <h2 class="title-frontpage">{{ umbracoData.properties.title }}</h2>
-          <BaseEditor v-model="editorContent"/>
-          <BaseButton class="saveBtn" text="Save" @click="saveEntry()"/>
-        </PartialJournalWorkspace>
-      </div>
-      
+        </div>
+      <BaseEditor v-model="editorContent"/>
+      <BaseButton class="saveBtn" 
+      :text="umbracoData?.properties.saveButtonLabel" 
+      @click="saveEntry()"/>
+    </PartialJournalWorkspace>
+  </div>
 </template>
 
- 
 <style>
-
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
 }
-
 
 .v-enter-from,
 .v-leave-to {
