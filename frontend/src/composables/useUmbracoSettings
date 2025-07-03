@@ -1,0 +1,16 @@
+
+import type { UmbracoSettingsContentItem } from '~/types';
+
+export const useUmbracoSettings = () => {
+
+    const settingsApiUrl = 'http://localhost:35865/umbraco/delivery/api/v2/content/item/YOUR_SETTINGS_NODE_GUID';
+
+    const { data: settingsData, pending, error, refresh } = useFetch<UmbracoSettingsContentItem>(settingsApiUrl);
+
+    return {
+        settingsData, 
+        pending,
+        error,
+        refresh
+    };
+};
