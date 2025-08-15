@@ -20,6 +20,16 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const entries = await Entry.find({});
+    res.status(200).json(entries);
+  } catch (error) {
+    console.log("Failed to fetch entries:", error);
+    res.status(500).json({ error: "Failed to fetch entries" });
+  }
+});
+
 module.exports = router;
 
 // const express = require("express");
