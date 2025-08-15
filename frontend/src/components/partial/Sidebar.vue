@@ -4,7 +4,7 @@ defineProps<{
   newEntryLabel?: string;
   allEntriesLabel?: string;
   latestLabel?: string;
-}>();
+}>();   
 </script>
 
 <template>

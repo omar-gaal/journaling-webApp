@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { useEditorContent } from '~/composables/useEditorContent';
-// import { useUmbracoData } from '~/composables/useUmbracoData';
-// import { useUmbracoSettings } from '~/composables/useUmbracoSettings';
 
-
-
-
-
+const entryTitle = ref('');
 
 const isOpen = useSidebar();
 const { editorContent, saveEntry } = useEditorContent();
 
+const handleSave = () => {
+  saveEntry({
+    title: entryTitle.value,
+    content: editorContent.value,
+  });
+};
 </script>
 
 <template>
@@ -25,13 +26,12 @@ const { editorContent, saveEntry } = useEditorContent();
   
       <div class="title-textArea-btn">
         <h2 class="header-journal">Welcome</h2>
-
-
+        <PartialFormfield v-model:title="entryTitle" />
         <BaseEditor v-model="editorContent"/>
         <BaseButton
           class="saveBtn"
           text="Save"
-          @click="saveEntry()"
+          @click="handleSave()"
         />
       </div>
    

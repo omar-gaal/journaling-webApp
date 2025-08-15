@@ -1,23 +1,37 @@
+import { ref } from "vue";
+
+interface NewEntryData {
+    title: string;
+    content: string;
+}
+
 export const useEditorContent = () => {
-
-       
-    const editorContent = ref(""); 
     
-    onMounted ( () => {
-        const saved = localStorage.getItem('journal-entry');
-    if(saved) {
-        editorContent.value = saved
-    }   
-});
+    const editorContent = ref("");
 
-function saveEntry() {
-    localStorage.setItem('journal-entry', editorContent.value)
-    alert('saved!')
-}
+    async function saveEntry( entryData: NewEntryData) {
+        console.log("Attempting to save entry:", entryData);
 
-return {
-    editorContent,
-    saveEntry
-}
+
+    // POST request to entry 
+    try {
+        const savedEntry = await $fetch("http://localhost:5001/entry", {
+            method: "POST",
+            body: entryData
+        });
+        console.log("Entry saved successfully:", saveEntry);
+
+        editorContent.value = "";
+
+        alert("Entry saved successfully!");
+      } catch (error) {
+        console.log("Failed to save entry:", error)
+        alert("Failed to save entry. look at console for details.")
+      }
+    }
+    return {
+        editorContent,
+        saveEntry
+    }
 
 }

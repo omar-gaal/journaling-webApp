@@ -9,7 +9,14 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.use(cors());
+// app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:3000", // or "*" for all origins
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
 
 const entryRoutes = require("./routes/entryRoutes");
 app.use("/entry", entryRoutes);
@@ -24,9 +31,13 @@ mongoose
 
 app.get("/", (req, res) => {
   res.send("Backend is working!");
-  ƒ;
+  // ƒ;
 });
 
-app.listen(5000, () => {
-  console.log("🚀 Server running on http://localhost:5000");
+app.listen(5001, () => {
+  console.log("🚀 Server running on http://localhost:5001");
 });
+
+// {
+//   "content": "This is a test journal entry."
+// }
