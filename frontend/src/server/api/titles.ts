@@ -1,5 +1,4 @@
 import type { Entry } from "~/types/entry";
-import { Title } from '../../../.nuxt/components';
 
 
 export default defineEventHandler(async (event) => {
@@ -12,7 +11,7 @@ export default defineEventHandler(async (event) => {
             title: entry.title
         }));
         return titlesWithIds;
-        
+
     } catch (error) {
         console.log("Failed to fetch titles:", error)
         return { error: "Failed to fetch titles"};
