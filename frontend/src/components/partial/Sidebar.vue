@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// Define props to receive the labels from pages/index.vue
 defineProps<{
   newEntryLabel?: string;
   allEntriesLabel?: string;
@@ -7,7 +6,8 @@ defineProps<{
 }>();   
 
 
-const {data: titles, pending } = useFetch('/api/titles')
+
+const {data: titles, pending } = await useFetch<{ _id: string, title: string}[]>('/api/titles')
 
 </script>
 
@@ -17,7 +17,7 @@ const {data: titles, pending } = useFetch('/api/titles')
         <br>
          <div class="sidebar-child" >
          <Icon name="uil:chat" size="2rem" />
-         <h2>{{ newEntryLabel || 'New entry' }}</h2>
+         <NuxtLink to="/">{{ newEntryLabel || 'New entry' }}</NuxtLink>
         </div>
 
         <div class="sidebar-child" >
@@ -28,24 +28,13 @@ const {data: titles, pending } = useFetch('/api/titles')
         </div>
 
         <h2>{{ latestLabel || 'Latest' }}</h2>
-        <h3 v-if="pending"> loading Titles...</h3>
-        <template v-else-if="titles && titles.length > 0">
-            <h3 v-for="title in titles" :key="title">
-                - {{ title }}
-            </h3>
-        </template>
-        <h3 v-else>No titles found.</h3>
+        <BaseJournalTitles
+        class="journalTitles"
+        :titles="titles?.slice(0, 4)" 
+        :pending="pending"
+        />
 
 
-
-
-        <!-- <h2>{{ latestLabel || 'Latest' }}</h2>
-        <h3>- lorem ipsum lorem </h3>
-        <h3>- lorem ipsum lorem </h3>
-        <h3>- lorem ipsum lorem </h3> -->
     </aside>
 </template>
 
-<style>
-/* Your styles */
-</style>
