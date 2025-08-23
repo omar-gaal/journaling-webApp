@@ -8,7 +8,7 @@ defineProps<{
 
 
 const {data: titles, pending } = useFetch('/api/titles')
-console.log(titles.value)
+
 </script>
 
 <template>
