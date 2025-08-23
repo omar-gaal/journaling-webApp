@@ -3,7 +3,7 @@ import { useEditorContent } from '~/composables/useEditorContent';
 
 const entryTitle = ref('');
 
-const isOpen = useSidebar();
+
 const { editorContent, saveEntry } = useEditorContent();
 
 const handleSave = () => {
@@ -16,11 +16,7 @@ const handleSave = () => {
 
 <template>
   <div>
-    <Transition>
-      <PartialSidebar
-        v-if="isOpen"
-      />
-    </Transition>
+
 
     <PartialJournalWorkspace>
   
