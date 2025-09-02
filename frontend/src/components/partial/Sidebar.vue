@@ -30,7 +30,7 @@ const {data: titles, pending } = await useFetch<{ _id: string, title: string}[]>
         <h2>{{ latestLabel || 'Latest' }}</h2>
         <BaseJournalTitles
         class="journalTitles"
-        :titles="titles?.slice(0, 4)" 
+        :titles="titles?.slice(0, 14)" 
         :pending="pending"
         />
 
